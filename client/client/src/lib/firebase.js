@@ -8,17 +8,56 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
-const requiredValues = Object.values(firebaseConfig)
-const firebaseEnabled = requiredValues.every((value) => typeof value === 'string' && value.trim())
+const missingKeys = Object.entries(firebaseConfig)
+  .filter(([, value]) => !(typeof value === 'string' && value.trim()))
+  .map(([key]) => key)
+
+const firebaseEnabled = missingKeys.length === 0
+const firebaseConfigError = firebaseEnabled
+  ? null
+  : `Missing Firebase web config: ${missingKeys.join(', ')}`
 
 let auth = null
 let googleProvider = null
+let firebaseInitError = null
 
 if (firebaseEnabled) {
-  const app = initializeApp(firebaseConfig)
-  auth = getAuth(app)
-  googleProvider = new GoogleAuthProvider()
-  googleProvider.setCustomParameters({ prompt: 'select_account' })
+  try {
+    const app = initializeApp(firebaseConfig)
+    auth = getAuth(app)
+    googleProvider = new GoogleAuthProvider()
+    googleProvider.setCustomParameters({ prompt: 'select_account' })
+  } catch (err) {
+    firebaseInitError = err
+  }
 }
 
-export { auth, firebaseEnabled, googleProvider }
+if (typeof window !== 'undefined') {
+  window.__MJ_FIREBASE_DEBUG__ = {
+    firebaseEnabled,
+    firebaseConfigError,
+    firebaseInitError: firebaseInitError ? String(firebaseInitError) : null,
+    presentKeys: Object.fromEntries(
+      Object.entries(firebaseConfig).map(([key, value]) => [
+        key,
+        Boolean(typeof value === 'string' && value.trim()),
+      ])
+    ),
+    authDomain: firebaseConfig.authDomain || null,
+    projectId: firebaseConfig.projectId || null,
+  }
+  if (firebaseConfigError) {
+    console.error('[MyJobs] Firebase web config issue:', firebaseConfigError)
+  }
+  if (firebaseInitError) {
+    console.error('[MyJobs] Firebase init failed:', firebaseInitError)
+  }
+}
+
+export {
+  auth,
+  firebaseEnabled,
+  firebaseConfigError,
+  firebaseInitError,
+  googleProvider,
+}

@@ -3,7 +3,13 @@ import { signInWithPopup } from 'firebase/auth'
 import { http } from '../api/http'
 import { useSessionBootstrap } from '../hooks/useSessionBootstrap'
 import { AuthContext } from './authContext'
-import { auth, firebaseEnabled, googleProvider } from '../lib/firebase'
+import {
+  auth,
+  firebaseConfigError,
+  firebaseEnabled,
+  firebaseInitError,
+  googleProvider,
+} from '../lib/firebase'
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
@@ -35,14 +41,30 @@ export default function AuthProvider({ children }) {
   }, [])
 
   const loginWithGoogle = useCallback(async () => {
-    if (!firebaseEnabled || !auth || !googleProvider) {
-      throw new Error('Google sign-in is not configured yet')
+    if (!firebaseEnabled) {
+      throw new Error(
+        firebaseConfigError ||
+          'Google sign-in is not configured yet (missing Firebase web config in build)'
+      )
     }
-    const result = await signInWithPopup(auth, googleProvider)
-    const idToken = await result.user.getIdToken()
-    const { data } = await http.post('/auth/google', { idToken })
-    setUser(data.user)
-    return data.user
+    if (firebaseInitError) {
+      throw new Error(`Firebase init failed: ${String(firebaseInitError)}`)
+    }
+    if (!auth || !googleProvider) {
+      throw new Error('Firebase auth is not initialized')
+    }
+    try {
+      const result = await signInWithPopup(auth, googleProvider)
+      const idToken = await result.user.getIdToken()
+      const { data } = await http.post('/auth/google', { idToken })
+      setUser(data.user)
+      return data.user
+    } catch (err) {
+      const code = err?.code ? ` [${err.code}]` : ''
+      const detail = err?.message || 'Google sign-in failed'
+      console.error('[MyJobs] Google sign-in error:', err)
+      throw new Error(`${detail}${code}`)
+    }
   }, [])
 
   const logout = useCallback(async () => {
