@@ -15,6 +15,8 @@ const jobRoutes = require("./routes/jobRoutes");
 
 const PORT = Number(process.env.PORT) || 3001;
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
+/** Helmet CSP defaults include upgrade-insecure-requests, which forces HTTPS for assets; plain-HTTP IPs then get ERR_SSL_PROTOCOL_ERROR. */
+const clientOriginIsHttps = CLIENT_ORIGIN.startsWith("https:");
 
 const app = express();
 
@@ -23,6 +25,14 @@ app.set("trust proxy", 1);
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" },
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: clientOriginIsHttps
+        ? {}
+        : {
+            upgradeInsecureRequests: null,
+          },
+    },
   })
 );
 app.use(
