@@ -1,0 +1,352 @@
+.mj-hero {
+  max-width: 40rem;
+}
+
+.mj-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+}
+
+.mj-hero h1 {
+  margin-top: 0;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.mj-lead {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.mj-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.mj-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .mj-features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.mj-features li {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--bg) 85%, var(--accent-bg));
+}
+
+.mj-features strong {
+  display: block;
+  color: var(--text-h);
+  margin-bottom: 0.35rem;
+}
+
+.mj-features span {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.mj-panel {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.mj-panel-wide {
+  max-width: 40rem;
+}
+
+.mj-center {
+  text-align: center;
+}
+
+.mj-muted {
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-top: 0;
+}
+
+.mj-muted a {
+  color: var(--accent);
+}
+
+.mj-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.mj-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.mj-field span {
+  color: var(--text-h);
+}
+
+.mj-field input,
+.mj-field textarea,
+.mj-field select {
+  font: inherit;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.mj-field input:focus-visible,
+.mj-field textarea:focus-visible,
+.mj-field select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.mj-fieldset {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem 1rem;
+  margin: 0;
+}
+
+.mj-fieldset legend {
+  padding: 0 0.35rem;
+  color: var(--text-h);
+  font-size: 0.9rem;
+}
+
+.mj-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mj-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.mj-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.mj-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.mj-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.mj-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.mj-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mj-btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: color-mix(in srgb, var(--accent) 70%, #000);
+}
+
+.mj-btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-h);
+}
+
+.mj-btn-danger {
+  background: transparent;
+  border-color: color-mix(in srgb, #f87171 55%, var(--border));
+  color: #f87171;
+}
+
+.mj-error {
+  color: #f87171;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.mj-success {
+  color: #4ade80;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.mj-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin: 1.5rem 0;
+}
+
+.mj-grow {
+  flex: 1 1 12rem;
+}
+
+.mj-joblist {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mj-jobcard {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mj-jobcard h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.mj-jobactions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.mj-pill {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--text-h);
+}
+
+.mj-small {
+  font-size: 0.82rem;
+  margin: 0.25rem 0 0;
+}
+
+.mj-dashhead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.mj-board {
+  margin-bottom: 2rem;
+}
+
+.mj-board h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+}
+
+.mj-applist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.mj-appcard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
+
+.mj-appcard h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.mj-appactions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.mj-selectwrap select {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.mj-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

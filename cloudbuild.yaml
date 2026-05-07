@@ -1,0 +1,18 @@
+# Google Cloud Build — builds the combined API + static UI image.
+# Deploy manually (or add a second step) and set MONGODB_URI, JWT_SECRET, CLIENT_ORIGIN
+# on the Cloud Run service (use Secret Manager for credentials; never commit them).
+substitutions:
+  _REGION: us-central1
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-f'
+      - server/Dockerfile
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/myjobs:$SHORT_SHA'
+      - .
+
+images:
+  - 'gcr.io/$PROJECT_ID/myjobs:$SHORT_SHA'
