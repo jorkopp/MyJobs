@@ -1,7 +1,9 @@
 import { useCallback, useMemo, useState } from 'react'
+import { signInWithPopup } from 'firebase/auth'
 import { http } from '../api/http'
 import { useSessionBootstrap } from '../hooks/useSessionBootstrap'
 import { AuthContext } from './authContext'
+import { auth, firebaseEnabled, googleProvider } from '../lib/firebase'
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
@@ -32,6 +34,17 @@ export default function AuthProvider({ children }) {
     return data.user
   }, [])
 
+  const loginWithGoogle = useCallback(async () => {
+    if (!firebaseEnabled || !auth || !googleProvider) {
+      throw new Error('Google sign-in is not configured yet')
+    }
+    const result = await signInWithPopup(auth, googleProvider)
+    const idToken = await result.user.getIdToken()
+    const { data } = await http.post('/auth/google', { idToken })
+    setUser(data.user)
+    return data.user
+  }, [])
+
   const logout = useCallback(async () => {
     await http.post('/auth/logout')
     setUser(null)
@@ -42,12 +55,13 @@ export default function AuthProvider({ children }) {
       user,
       loading,
       login,
+      loginWithGoogle,
       register,
       logout,
       refresh,
       setUser,
     }),
-    [user, loading, login, register, logout, refresh]
+    [user, loading, login, loginWithGoogle, register, logout, refresh]
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

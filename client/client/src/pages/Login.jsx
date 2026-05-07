@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth'
 import './Pages.css'
 
 export default function Login() {
-  const { login } = useAuth()
+  const { login, loginWithGoogle } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from || '/dashboard'
@@ -13,6 +13,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
+  const [busyGoogle, setBusyGoogle] = useState(false)
 
   async function onSubmit(e) {
     e.preventDefault()
@@ -28,10 +29,26 @@ export default function Login() {
     }
   }
 
+  async function onGoogleSignIn() {
+    setError('')
+    setBusyGoogle(true)
+    try {
+      await loginWithGoogle()
+      navigate(from, { replace: true })
+    } catch (err) {
+      setError(err.message || 'Google sign in failed')
+    } finally {
+      setBusyGoogle(false)
+    }
+  }
+
   return (
     <div className="mj-panel">
       <h1>Sign in</h1>
       <p className="mj-muted">Use the account you created for MyJobs.</p>
+      <button type="button" className="mj-btn mj-btn-ghost" onClick={onGoogleSignIn} disabled={busyGoogle}>
+        {busyGoogle ? 'Connecting Google…' : 'Continue with Google'}
+      </button>
       <form className="mj-form" onSubmit={onSubmit}>
         <label className="mj-field">
           <span>Email</span>

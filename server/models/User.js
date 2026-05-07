@@ -54,7 +54,12 @@ const userSchema = new mongoose.Schema(
       trim: true,
       maxlength: 320,
     },
-    passwordHash: { type: String, required: true, select: false },
+    passwordHash: { type: String, select: false },
+    authProvider: {
+      type: String,
+      enum: ["password", "google"],
+      default: "password",
+    },
     profile: { type: profileSchema, default: () => ({}) },
   },
   { timestamps: true }
