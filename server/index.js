@@ -18,6 +18,34 @@ const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 /** Helmet CSP defaults include upgrade-insecure-requests, which forces HTTPS for assets; plain-HTTP IPs then get ERR_SSL_PROTOCOL_ERROR. */
 const clientOriginIsHttps = CLIENT_ORIGIN.startsWith("https:");
 
+const cspDirectives = {
+  "script-src": [
+    "'self'",
+    "https://apis.google.com",
+    "https://www.gstatic.com",
+    "https://www.googleapis.com",
+    "https://*.firebaseapp.com",
+  ],
+  "connect-src": [
+    "'self'",
+    "https://identitytoolkit.googleapis.com",
+    "https://securetoken.googleapis.com",
+    "https://www.googleapis.com",
+    "https://*.firebaseio.com",
+    "https://*.firebaseapp.com",
+  ],
+  "frame-src": [
+    "'self'",
+    "https://accounts.google.com",
+    "https://*.firebaseapp.com",
+  ],
+  "img-src": ["'self'", "data:", "https://*.googleusercontent.com", "https://www.gstatic.com"],
+};
+
+if (!clientOriginIsHttps) {
+  cspDirectives.upgradeInsecureRequests = null;
+}
+
 const app = express();
 
 app.set("trust proxy", 1);
@@ -25,13 +53,10 @@ app.set("trust proxy", 1);
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" },
+    crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
     contentSecurityPolicy: {
       useDefaults: true,
-      directives: clientOriginIsHttps
-        ? {}
-        : {
-            upgradeInsecureRequests: null,
-          },
+      directives: cspDirectives,
     },
   })
 );
