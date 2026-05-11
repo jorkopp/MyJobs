@@ -72,3 +72,5 @@ fix minor css inconsistencies
 update deployment configuration
 
 improve client/server separation
+
+cleanup authentication middleware
