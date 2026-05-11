@@ -46,3 +46,5 @@ improve firebase auth handling
 cleanup api route structure
 
 adjust dashboard spacing
+
+improve mobile responsiveness
