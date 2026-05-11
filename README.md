@@ -70,3 +70,5 @@ improve backend validation
 fix minor css inconsistencies
 
 update deployment configuration
+
+improve client/server separation
