@@ -64,3 +64,5 @@ add error handling for login flow
 adjust application form styling
 
 reorganize react component structure
+
+improve backend validation
