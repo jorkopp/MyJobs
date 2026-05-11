@@ -42,3 +42,5 @@ Update log 20
 refactor job card rendering
 
 improve firebase auth handling
+
+cleanup api route structure
