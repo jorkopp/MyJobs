@@ -74,3 +74,5 @@ update deployment configuration
 improve client/server separation
 
 cleanup authentication middleware
+
+optimize data fetching logic
