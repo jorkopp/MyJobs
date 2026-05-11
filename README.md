@@ -44,3 +44,5 @@ refactor job card rendering
 improve firebase auth handling
 
 cleanup api route structure
+
+adjust dashboard spacing
