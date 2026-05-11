@@ -48,3 +48,5 @@ cleanup api route structure
 adjust dashboard spacing
 
 improve mobile responsiveness
+
+fix navbar alignment issue
