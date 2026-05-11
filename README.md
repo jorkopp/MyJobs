@@ -56,3 +56,5 @@ update mongodb connection logic
 refactor job filtering logic
 
 cleanup unused frontend imports
+
+improve loading state handling
