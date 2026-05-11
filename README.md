@@ -76,3 +76,5 @@ improve client/server separation
 cleanup authentication middleware
 
 optimize data fetching logic
+
+improve responsive layout for jobs page
