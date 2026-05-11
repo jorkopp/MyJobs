@@ -66,3 +66,5 @@ adjust application form styling
 reorganize react component structure
 
 improve backend validation
+
+fix minor css inconsistencies
