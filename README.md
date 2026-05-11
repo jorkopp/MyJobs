@@ -58,3 +58,5 @@ refactor job filtering logic
 cleanup unused frontend imports
 
 improve loading state handling
+
+add error handling for login flow
