@@ -40,3 +40,5 @@ Update log 19
 Update log 20
 
 refactor job card rendering
+
+improve firebase auth handling
