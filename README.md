@@ -1,80 +1,127 @@
+````md
+# MyJobs
 
-Update log 1
+A full-stack job tracking web application designed to help users organize job applications, monitor application status, and manage their career search efficiently.
 
-Update log 2
+## Features
 
-Update log 3
+- User authentication with Firebase
+- Job application tracking dashboard
+- Add, edit, and delete job applications
+- Responsive React frontend
+- Node.js + Express backend
+- MongoDB database integration
+- REST API architecture
+- Mobile responsive layout
+- Deployment-ready structure
 
-Update log 4
+---
 
-Update log 5
+## Tech Stack
 
-Update log 6
+### Frontend
+- React.js
+- CSS3
+- Firebase Authentication
 
-Update log 7
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
 
-Update log 8
+### DevOps / Deployment
+- Docker
+- Google Cloud Build
+- GitHub
 
-Update log 9
+---
 
-Update log 10
+## Project Structure
 
-Update log 11
+```bash
+client/
+│
+├── client/
+│   ├── src/
+│   ├── components/
+│   ├── pages/
+│   └── styles/
 
-Update log 12
+server/
+│
+├── routes/
+├── controllers/
+├── models/
+└── middleware/
+````
 
-Update log 13
+---
 
-Update log 14
+## Current Development Goals
 
-Update log 15
+* Improve dashboard UI/UX
+* Add advanced filtering system
+* Implement application analytics
+* Optimize mobile responsiveness
+* Improve authentication flow
+* Add dark mode support
 
-Update log 16
+---
 
-Update log 17
+## Local Setup
 
-Update log 18
+### Clone Repository
 
-Update log 19
+```bash
+git clone https://github.com/jorkopp/MyJobs.git
+```
 
-Update log 20
+### Install Frontend Dependencies
 
-refactor job card rendering
+```bash
+cd client/client
+npm install
+```
 
-improve firebase auth handling
+### Install Backend Dependencies
 
-cleanup api route structure
+```bash
+cd server
+npm install
+```
 
-adjust dashboard spacing
+### Run Development Environment
 
-improve mobile responsiveness
+Frontend:
 
-fix navbar alignment issue
+```bash
+npm start
+```
 
-update mongodb connection logic
+Backend:
 
-refactor job filtering logic
+```bash
+npm run dev
+```
 
-cleanup unused frontend imports
+---
 
-improve loading state handling
+## Future Improvements
 
-add error handling for login flow
+* Resume upload support
+* AI-powered resume suggestions
+* Interview tracking
+* Notifications system
+* Company insights dashboard
+* Application statistics visualization
 
-adjust application form styling
+---
 
-reorganize react component structure
+## Author
 
-improve backend validation
+Nader Shbib, Jordan Kopp
+Software Engineering Student @ CSUSM
 
-fix minor css inconsistencies
-
-update deployment configuration
-
-improve client/server separation
-
-cleanup authentication middleware
-
-optimize data fetching logic
-
-improve responsive layout for jobs page
+```
+```
