@@ -52,3 +52,5 @@ improve mobile responsiveness
 fix navbar alignment issue
 
 update mongodb connection logic
+
+refactor job filtering logic
