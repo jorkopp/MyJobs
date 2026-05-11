@@ -60,3 +60,5 @@ cleanup unused frontend imports
 improve loading state handling
 
 add error handling for login flow
+
+adjust application form styling
